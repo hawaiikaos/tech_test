@@ -22,6 +22,12 @@ export const Main = () => {
     }
   }
 
+  const reset = () => {
+    console.log('in reset');
+    setBoard(board.map(row => row.map(item => undefined)));
+    console.log('board: ', board);
+  };
+
   return <div className='flex flex-col mt-10 items-center gap-10'>
     <div className='font-bold text-2xl'>Tic Tac Toe</div>
     <div className='flex flex-col gap-1'>
@@ -33,6 +39,7 @@ export const Main = () => {
       </div>)}
 
       <div>Current Player: { currentPlayer }</div>
+      <div><button onClick={ reset }>Reset</button></div>
 
     </div>
   </div>
