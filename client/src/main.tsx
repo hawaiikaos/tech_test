@@ -17,8 +17,9 @@ export const Main = () => {
 
     // only mark square if it's unoccupied
     // AND there isn't a winner
-    if (board[row][col] === undefined) {
+    if ((board[row][col] === undefined) && !winner) {
       board[row][col] = currentPlayer;
+      checkWinState();
       setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
     }
   }
@@ -28,6 +29,16 @@ export const Main = () => {
     setBoard(board.map(row => row.map(item => undefined)));
     console.log('board: ', board);
   };
+
+  const checkWinState = () => {
+    console.log('in checkWinState');
+
+    // win states:
+    // - any row filled with same player
+    // - any column filled with same player
+    // - any diagonal filled with same player
+
+  }
 
   return <div className='flex flex-col mt-10 items-center gap-10'>
     <div className='font-bold text-2xl'>Tic Tac Toe</div>
