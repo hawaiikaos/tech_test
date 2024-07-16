@@ -9,6 +9,8 @@ export const Main = () => {
     [undefined, undefined, undefined]
   ])
 
+  const [currentPlayer, setCurrentPlayer] = useState<XorO>('O');
+
   const takeTurn = (row:number, col:number) => {
     console.log('in takeTurn');
 
