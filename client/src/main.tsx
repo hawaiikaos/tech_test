@@ -27,6 +27,9 @@ export const Main = () => {
           {column}
         </div>)}
       </div>)}
+
+      <div>Current Player: { currentPlayer }</div>
+      
     </div>
   </div>
 }
