@@ -16,6 +16,10 @@ export const Main = () => {
 
     // only mark square if it's unoccupied
     // AND there isn't a winner
+    if (board[row][col] === undefined) {
+      board[row][col] = currentPlayer;
+      setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+    }
   }
 
   return <div className='flex flex-col mt-10 items-center gap-10'>
@@ -29,7 +33,7 @@ export const Main = () => {
       </div>)}
 
       <div>Current Player: { currentPlayer }</div>
-      
+
     </div>
   </div>
 }
