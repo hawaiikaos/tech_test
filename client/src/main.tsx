@@ -10,6 +10,7 @@ export const Main = () => {
   ])
 
   const [currentPlayer, setCurrentPlayer] = useState<XorO>('O');
+  const [winner, setWinner] = useState<XorO>();
 
   const takeTurn = (row:number, col:number) => {
     console.log('in takeTurn');
@@ -40,7 +41,9 @@ export const Main = () => {
 
       <div>Current Player: { currentPlayer }</div>
       <div><button onClick={ reset }>Reset</button></div>
-
+      { winner &&
+        <div>Game won by: { winner } </div>
+      }
     </div>
   </div>
 }
