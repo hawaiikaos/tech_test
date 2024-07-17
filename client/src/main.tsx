@@ -3,11 +3,12 @@ import { XorO } from './types'
 
 
 export const Main = () => {
-  const [board, setBoard] = useState<(XorO | undefined)[][]>([
+
+  /*const [board, setBoard] = useState<(XorO | undefined)[][]>([
     [undefined, undefined, undefined],
     [undefined, undefined, undefined],
     [undefined, undefined, undefined]
-  ])
+  ])*/
 
   const [currentPlayer, setCurrentPlayer] = useState<XorO>('O');
   const [winner, setWinner] = useState<XorO>();
@@ -17,14 +18,24 @@ export const Main = () => {
   const [xTally, setxTally] = useState<number>(0);
   const [oTally, setoTally] = useState<number>(0);
 
+  const defaultBoardSize = 3;
+  
+  const createBoard = (size) => {
+    return Array.from({ length: size }, () => Array.from({ length: size }, () => undefined));
+  }
+
+  const [board, setBoard] = useState<(XorO | undefined)[][]>(createBoard(defaultBoardSize));
+
+
   const getBoardSize = (e) => {
     console.log('in boardSize');
     console.log('e: ', e.target.value);
     if (!gameStarted) {
       // allow board size change
-      console.log('board has started');
-    } else {
       console.log('board has not started');
+      setBoard(createBoard(e.target.value));
+    } else {
+      console.log('board has started');
     }
   }
 
