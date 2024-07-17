@@ -59,6 +59,11 @@ export const Main = () => {
     // check for a stable connection in the background, then send the
     // stat data to the hypothetical backend server
 
+    // Just wanted to add that in a real scenario, I would
+    // present an idea like this rather than just writing in as
+    // I have done here. Especially when there are security
+    // implications to consider. I try not to cowboy code.
+
     localStorage.setItem('oTally', String(oTally));
     localStorage.setItem('xTally', String(xTally));
 
