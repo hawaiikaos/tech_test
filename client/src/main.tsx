@@ -13,10 +13,10 @@ export const Main = () => {
   const [winner, setWinner] = useState<XorO>();
 
   const takeTurn = (row:number, col:number) => {
-    console.log('in takeTurn');
 
     // only mark square if it's unoccupied
     // AND there isn't a winner
+
     if ((board[row][col] === undefined) && !winner) {
       board[row][col] = currentPlayer;
       checkWinState();
@@ -25,14 +25,11 @@ export const Main = () => {
   }
 
   const reset = () => {
-    console.log('in reset');
     setBoard(board.map(row => row.map(item => undefined)));
     setWinner(undefined);
-    console.log('board: ', board);
   };
 
   const checkWinState = () => {
-    console.log('in checkWinState');
 
     // win states:
     // - any row filled with same player
@@ -86,6 +83,7 @@ export const Main = () => {
     }
 
     function rotateBoard(b) {
+      
       // I'm not a leetcoder so rotating the board
       // was the only way I could think to get the
       // other diagonal match. I am certain there
