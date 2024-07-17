@@ -77,7 +77,7 @@ export const Main = () => {
     // - any diagonal filled with same player
 
     function checkBoard(b) {
-      console.log('in checkBoard');
+
       let Odiagonaltotal = 0;
       let Xdiagonaltotal = 0;
       let rowindex = 0;
