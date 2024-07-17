@@ -105,10 +105,7 @@ export const Main = () => {
     }
 
     checkBoard(board);
-    checkBoard(rotateBoard(board));
-    // There's an issue with the board being modifed below 🐞
-    console.log("rotated board: ", rotateBoard(board));
-
+    checkBoard(rotateBoard(board.slice()));
   }
 
   return <div className='flex flex-col mt-10 items-center gap-10'>
