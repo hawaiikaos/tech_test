@@ -43,26 +43,19 @@ export const Main = () => {
       console.log('in checkBoard');
       let Odiagonaltotal = 0;
       let Xdiagonaltotal = 0;
-      //let Orowtotal = 0;
-      //let Xrowtotal = 0;
       let rowindex = 0;
       for (let row of b) {
-        console.log(row);
         const rowlen = row.length;
         let Ocoltotal = 0;
         let Xcoltotal = 0;
         let colindex = 0;
         for (let col of row) {
           if (colindex === rowindex) {
-            console.log('colindex: ', colindex);
-            console.log('rowindex: ', rowindex);
             if (col === 'O') {
               Odiagonaltotal++;
-              console.log('Odiagonaltotal: ', Odiagonaltotal);
             }
             if (col === 'X') {
               Xdiagonaltotal++;
-              console.log('Xdiagonaltotal: ', Xdiagonaltotal);
             }
           }
           if (col == 'O') {
@@ -71,33 +64,33 @@ export const Main = () => {
           if (col == 'X') {
             Xcoltotal++;
           }
-          console.log('row length: ', row.length);
           if (Ocoltotal == row.length) {
-            console.log("A: O wins");
+            // O wins
             setWinner('O');
           } else if (Xcoltotal == row.length) {
-            console.log("A: X wins");
+            // X wins
             setWinner('X');
-          } else {
-            //console.log('nobody wins');
           }
-          //console.log('Ocoltotal: ', Ocoltotal);
-          //console.log('Xcoltotal: ', Xcoltotal);
           colindex++;
         }
         rowindex++;
       }
       if (Odiagonaltotal === b.length) {
-        console.log('B: O wins');
+        // O wins
         setWinner('O');
       } else if (Xdiagonaltotal === b.length) {
-        console.log('B: X wins');
+        // X wins
         setWinner('X');
       }
       
     }
 
     function rotateBoard(b) {
+      // I'm not a leetcoder so rotating the board
+      // was the only way I could think to get the
+      // other diagonal match. I am certain there
+      // is probably a more efficient/simple method
+
       const rotated : string[][] = [];
       b.reverse();
       
@@ -113,7 +106,7 @@ export const Main = () => {
 
     checkBoard(board);
     checkBoard(rotateBoard(board));
-    console.log("board: ", board);
+    // There's an issue with the board being modifed below 🐞
     console.log("rotated board: ", rotateBoard(board));
 
   }
