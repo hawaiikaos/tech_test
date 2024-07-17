@@ -11,12 +11,27 @@ export const Main = () => {
 
   const [currentPlayer, setCurrentPlayer] = useState<XorO>('O');
   const [winner, setWinner] = useState<XorO>();
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
   // these tallies are not very scalable but I don't think the
   // number of players is meant to be scalable?
   const [xTally, setxTally] = useState<number>(0);
   const [oTally, setoTally] = useState<number>(0);
 
+  const getBoardSize = (e) => {
+    console.log('in boardSize');
+    console.log('e: ', e.target.value);
+    if (!gameStarted) {
+      // allow board size change
+      console.log('board has started');
+    } else {
+      console.log('board has not started');
+    }
+  }
+
   const takeTurn = (row:number, col:number) => {
+
+    // someone has clicked, so game is started
+    setGameStarted(true);
 
     // only mark square if it's unoccupied
     // AND there isn't a winner
@@ -31,6 +46,7 @@ export const Main = () => {
   const reset = () => {
     setBoard(board.map(row => row.map(item => undefined)));
     setWinner(undefined);
+    setGameStarted(false);
   };
 
   const clearStats = () => {
@@ -147,7 +163,9 @@ export const Main = () => {
   }
 
   return <div className='flex flex-col mt-10 items-center gap-10'>
-    <div className='font-bold text-2xl'>Tic Tac Toe</div>
+    <div className='font-bold text-2xl'>Tic Tac Toe *
+      <input type='number' min='3' max='15' defaultValue='3' onChange={ getBoardSize } disabled={ gameStarted } />
+    </div>
     <div className='flex flex-col gap-1'>
 
       {board.map((row, rowindex) => <div className='flex gap-1'>
