@@ -11,6 +11,10 @@ export const Main = () => {
 
   const [currentPlayer, setCurrentPlayer] = useState<XorO>('O');
   const [winner, setWinner] = useState<XorO>();
+  // these tallies are not very scalable but I don't think the
+  // number of players is meant to be scalable?
+  const [xTally, setxTally] = useState<Number>(0);
+  const [oTally, setoTally] = useState<Number>(0);
 
   const takeTurn = (row:number, col:number) => {
 
@@ -83,7 +87,7 @@ export const Main = () => {
     }
 
     function rotateBoard(b) {
-      
+
       // I'm not a leetcoder so rotating the board
       // was the only way I could think to get the
       // other diagonal match. I am certain there
@@ -121,6 +125,27 @@ export const Main = () => {
       { winner &&
         <div>Game won by: { winner } </div>
       }
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Wins</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>X</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>O</td>
+              <td></td>
+            </tr>
+          </tbody>
+          
+        </table>
+      </div>
     </div>
   </div>
 }
