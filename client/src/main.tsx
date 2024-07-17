@@ -158,9 +158,6 @@ export const Main = () => {
 
       <div>Current Player: { currentPlayer }</div>
       <div><button onClick={ reset }>Reset</button></div>
-      { winner &&
-        <div>Game won by: { winner } </div>
-      }
       <div>
         <table>
           <thead>
@@ -188,6 +185,9 @@ export const Main = () => {
             </tfoot>
         </table>
       </div>
+      { winner &&
+        <div>Game won by: { winner } </div>
+      }
     </div>
   </div>
 }
