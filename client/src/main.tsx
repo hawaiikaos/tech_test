@@ -33,6 +33,12 @@ export const Main = () => {
     setWinner(undefined);
   };
 
+  const clearStats = () => {
+    localStorage.clear();
+    setoTally(0);
+    setxTally(0);
+  }
+
   const findWinner = (w) => {
     setWinner(w);
     if (w === 'O') {
@@ -40,6 +46,22 @@ export const Main = () => {
     } else if (w === 'X') {
       setxTally(xTally + 1);
     }
+
+    // Problem 3 asks for a simple backend to store the win data
+    // however I was thinking about the use case in your software
+    // where users do not have reliable internet connection.
+    // One way to support offline use is to use local or session
+    // storage in the browser. This should NEVER be used for 
+    // sensitive data. However I don't think game stats qualify
+    // as sensitive data, so instead of a SQL backend, I'm using
+    // local storage (saves even when the user closes the browser).
+    // If I had more time I might write a function to periodically
+    // check for a stable connection in the background, then send the
+    // stat data to the hypothetical backend server
+
+    localStorage.setItem('oTally', String(oTally));
+    localStorage.setItem('xTally', String(xTally));
+
   }
 
   const checkWinState = () => {
@@ -152,7 +174,13 @@ export const Main = () => {
               <td>{ oTally }</td>
             </tr>
           </tbody>
-          
+          <tfoot>
+              <tr>
+                <td>
+                  <button onClick={ clearStats }>Clear stats</button>
+                </td>
+              </tr>
+            </tfoot>
         </table>
       </div>
     </div>
