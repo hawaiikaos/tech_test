@@ -13,8 +13,8 @@ export const Main = () => {
   const [winner, setWinner] = useState<XorO>();
   // these tallies are not very scalable but I don't think the
   // number of players is meant to be scalable?
-  const [xTally, setxTally] = useState<Number>(0);
-  const [oTally, setoTally] = useState<Number>(0);
+  const [xTally, setxTally] = useState<number>(0);
+  const [oTally, setoTally] = useState<number>(0);
 
   const takeTurn = (row:number, col:number) => {
 
@@ -32,6 +32,15 @@ export const Main = () => {
     setBoard(board.map(row => row.map(item => undefined)));
     setWinner(undefined);
   };
+
+  const findWinner = (w) => {
+    setWinner(w);
+    if (w === 'O') {
+      setoTally(oTally + 1);
+    } else if (w === 'X') {
+      setxTally(xTally + 1);
+    }
+  }
 
   const checkWinState = () => {
 
@@ -67,10 +76,10 @@ export const Main = () => {
           }
           if (Ocoltotal == row.length) {
             // O wins
-            setWinner('O');
+            findWinner('O');
           } else if (Xcoltotal == row.length) {
             // X wins
-            setWinner('X');
+            findWinner('X');
           }
           colindex++;
         }
@@ -78,10 +87,10 @@ export const Main = () => {
       }
       if (Odiagonaltotal === b.length) {
         // O wins
-        setWinner('O');
+        findWinner('O');
       } else if (Xdiagonaltotal === b.length) {
         // X wins
-        setWinner('X');
+        findWinner('X');
       }
       
     }
@@ -136,11 +145,11 @@ export const Main = () => {
           <tbody>
             <tr>
               <td>X</td>
-              <td></td>
+              <td>{ xTally }</td>
             </tr>
             <tr>
               <td>O</td>
-              <td></td>
+              <td>{ oTally }</td>
             </tr>
           </tbody>
           
